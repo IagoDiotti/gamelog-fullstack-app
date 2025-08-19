@@ -15,8 +15,11 @@
 </p>
 
 ---
-Link para o site:https://gamelog-fullstack-iz182tkuw-iago-augusto-diotti-vianas-projects.vercel.app/ 
+## 🚀 Demo Ao Vivo
 
+**[Clique aqui para testar o GameLog ao vivo!](https://gamelog-fullstack-app.vercel.app/)**
+
+---
 
 ## 📖 Sobre o Projeto
 
