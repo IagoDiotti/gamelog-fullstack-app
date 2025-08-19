@@ -6,6 +6,7 @@
   Uma aplicação web completa para entusiastas de jogos buscarem, avaliarem e catalogarem seus títulos favoritos.
 </p>
 
+
 <p align="center">
   <a href="#-sobre-o-projeto"><strong>Sobre</strong></a> •
   <a href="#-funcionalidades"><strong>Funcionalidades</strong></a> •
@@ -14,11 +15,15 @@
 </p>
 
 ---
+Link para o site:https://gamelog-fullstack-iz182tkuw-iago-augusto-diotti-vianas-projects.vercel.app/ 
+
 
 ## 📖 Sobre o Projeto
 
+
 O **GameLog** é uma plataforma full-stack desenvolvida para demonstrar habilidades práticas na construção de aplicações web modernas. O projeto permite que usuários se cadastrem, busquem em um vasto catálogo de jogos fornecido pela API da RAWG, salvem avaliações pessoais com notas e comentários, e visualizem as opiniões da comunidade. A aplicação foi estruturada com uma API REST no backend (Node.js/Express) e uma Single-Page Application (SPA) no frontend (React).
 
+Link para o site:https://gamelog-fullstack-iz182tkuw-iago-augusto-diotti-vianas-projects.vercel.app/ 
 ---
 
 ## ✨ Funcionalidades
