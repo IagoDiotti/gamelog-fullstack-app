@@ -1,29 +1,22 @@
-
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Este componente recebe o token como "prop" para fazer a chamada autenticada
 function MyReviews({ token }) {
   const [myReviews, setMyReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!token) return; // Não faz nada se não houver token
-
+    if (!token) return;
     const fetchMyReviews = async () => {
       try {
         setIsLoading(true);
         setError(null);
-
-        // Faz a chamada para a rota protegida, passando o token no cabeçalho
         const response = await axios.get('http://localhost:3001/users/me/reviews', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
-
         setMyReviews(response.data);
       } catch (err) {
         setError('Não foi possível carregar suas avaliações.');
@@ -32,9 +25,8 @@ function MyReviews({ token }) {
         setIsLoading(false);
       }
     };
-
     fetchMyReviews();
-  }, [token]); // Roda sempre que o token mudar (ex: ao fazer login)
+  }, [token]);
 
   if (isLoading) {
     return <p>Carregando suas avaliações...</p>;

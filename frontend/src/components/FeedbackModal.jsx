@@ -1,11 +1,8 @@
-// src/components/FeedbackModal.jsx
-
 import Modal from 'react-modal';
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-// Cole aqui os seus customStyles do AuthModal
 const customStyles = {
   content: {
     top: '50%', left: '50%', right: 'auto', bottom: 'auto', marginRight: '-50%',
@@ -24,19 +21,14 @@ export function FeedbackModal({ isOpen, onRequestClose }) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // COLOQUE O SEU URL DO GETFORM AQUI
   const GETFORM_ENDPOINT_URL = 'https://getform.io/f/bvrmwexb';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    
     const formData = { tipo, mensagem, email };
-
     try {
-      // Usamos axios para enviar os dados para o endpoint do Getform
       await axios.post(GETFORM_ENDPOINT_URL, formData);
-      
       toast.success('Mensagem enviada com sucesso! Obrigado.');
       setMensagem('');
       setEmail('');
@@ -51,7 +43,6 @@ export function FeedbackModal({ isOpen, onRequestClose }) {
 
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
-      {/* O JSX do formulário continua exatamente o mesmo */}
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Fale Conosco</h2>
         <div className="form-group">

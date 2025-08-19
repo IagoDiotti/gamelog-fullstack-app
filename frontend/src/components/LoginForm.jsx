@@ -1,12 +1,9 @@
-// src/components/LoginForm.jsx
-
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
-// 1. Adicionamos a prop 'onLoginSuccess' aqui
 export function LoginForm({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,12 +18,9 @@ export function LoginForm({ onLoginSuccess }) {
       const response = await axios.post('http://localhost:3001/login', { email, password });
       login(response.data.token);
       toast.success('Login bem-sucedido!');
-      
-      // 2. A MUDANÇA PRINCIPAL: Chamamos a função para fechar o modal
       if (onLoginSuccess) {
         onLoginSuccess();
       }
-      
       navigate('/');
     } catch (err) {
       toast.error('E-mail ou senha inválidos.');

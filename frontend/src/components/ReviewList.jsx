@@ -1,15 +1,11 @@
-// src/components/ReviewList.jsx
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Este componente recebe o ID de um jogo como "prop"
 function ReviewList({ gameApiId }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect é perfeito para buscar dados assim que o componente aparece na tela
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -26,7 +22,7 @@ function ReviewList({ gameApiId }) {
     };
 
     fetchReviews();
-  }, [gameApiId]); // O array [gameApiId] faz com que o useEffect rode de novo se o ID do jogo mudar
+  }, [gameApiId]);
 
   if (isLoading) {
     return <p>Carregando avaliações...</p>;

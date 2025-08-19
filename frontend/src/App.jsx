@@ -1,14 +1,13 @@
-// src/App.jsx
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
-import { FeedbackModal } from './components/FeedbackModal'; // Importe o novo modal
+import { FeedbackModal } from './components/FeedbackModal'; 
 
 function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false); // Novo estado
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false); 
 
 
   return (
@@ -17,7 +16,7 @@ function App() {
 
       <Navbar 
     onLoginClick={() => setIsAuthModalOpen(true)} 
-    onFeedbackClick={() => setIsFeedbackModalOpen(true)} // <-- ADICIONE ESTA LINHA
+    onFeedbackClick={() => setIsFeedbackModalOpen(true)} 
 />
 
       <main>

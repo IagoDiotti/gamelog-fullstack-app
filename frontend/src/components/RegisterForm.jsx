@@ -1,4 +1,3 @@
-// src/components/RegisterForm.jsx
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -13,7 +12,7 @@ export function RegisterForm({ onRegisterSuccess }) {
     try {
       await axios.post('http://localhost:3001/usuarios', { nome, email, password });
       toast.success('Cadastro realizado com sucesso! Por favor, faça o login.');
-      onRegisterSuccess(); // Chama a função para voltar para a tela de login
+      onRegisterSuccess();
     } catch (err) {
       toast.error(err.response?.data?.error || 'Erro ao cadastrar.');
       console.error('Falha no cadastro:', err);

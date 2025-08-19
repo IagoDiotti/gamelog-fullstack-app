@@ -1,11 +1,8 @@
-// src/components/AuthModal.jsx
-
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 
-// Estilos customizados para o modal
 const customStyles = {
   content: {
     top: '50%',
@@ -55,10 +52,8 @@ export function AuthModal({ isOpen, onRequestClose }) {
             Cadastrar
           </button>
         </div>
-
         <div className="modal-content">
           {isLoginView ? (
-            // A MUDANÇA PRINCIPAL: Passamos a função de fechar para o LoginForm
             <LoginForm onLoginSuccess={onRequestClose} />
           ) : (
             <RegisterForm onRegisterSuccess={() => setIsLoginView(true)} />

@@ -1,13 +1,8 @@
-// src/pages/GamePage.jsx
-
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-
-// Para simplificar, vamos manter os componentes de review aqui por enquanto
-// Eles poderiam ser movidos para a pasta /components
 
 function ReviewForm({ game, token, onReviewSubmitted }) {
   const [rating, setRating] = useState(5);
@@ -83,15 +78,12 @@ function ReviewList({ gameApiId }) {
   );
 }
 
-
 function GamePage() {
   const { gameApiId } = useParams();
   const { token } = useAuth();
   const [game, setGame] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  // Estado para forçar a atualização da lista de reviews
   const [reviewUpdateCounter, setReviewUpdateCounter] = useState(0);
 
   useEffect(() => {
@@ -126,10 +118,9 @@ function GamePage() {
           <ReviewForm
             game={game}
             token={token}
-            onReviewSubmitted={() => setReviewUpdateCounter(c => c + 1)} // Força a re-renderização
+            onReviewSubmitted={() => setReviewUpdateCounter(c => c + 1)}
           />
         )}
-        {/* Passamos o contador como `key` para forçar o ReviewList a recarregar quando uma nova review é enviada */}
         <ReviewList key={reviewUpdateCounter} gameApiId={game.id} />
       </div>
     </div>

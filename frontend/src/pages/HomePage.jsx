@@ -1,13 +1,9 @@
-// src/pages/HomePage.jsx
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaSpinner } from 'react-icons/fa';
 
-// --- Componentes Internos Reutilizáveis ---
-// Mantendo aqui por simplicidade, mas poderiam ser movidos para a pasta /components
 
 function ReviewForm({ game, token, onReviewSubmitted }) {
   const [rating, setRating] = useState(5);
@@ -94,31 +90,29 @@ function ReviewList({ gameApiId }) {
 }
 
 
-// --- Componente Principal da Página ---
+
 
 function HomePage() {
   const { token } = useAuth();
 
-  // --- ESTADOS DO COMPONENTE ---
+
   const [searchTerm, setSearchTerm] = useState('');
   const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(true); // Inicia como true para o carregamento inicial
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [reviewingGameId, setReviewingGameId] = useState(null);
   const [viewingReviewsGameId, setViewingReviewsGameId] = useState(null);
   const [noResults, setNoResults] = useState(false);
   const [pageTitle, setPageTitle] = useState('Jogos mais Populares do Ano');
 
-  // --- EFEITO PARA BUSCAR JOGOS POPULARES AO CARREGAR ---
 useEffect(() => {
   const fetchPopularGames = async () => {
     setLoading(true);
     setError(null);
     setNoResults(false);
-    setPageTitle('Jogos mais Populares'); // Título inicial
+    setPageTitle('Jogos mais Populares'); 
     try {
       const apiKey = import.meta.env.VITE_RAWG_API_KEY;
-      // URL CORRIGIDA: Ordena pelos mais adicionados, sem filtro de data, e pega 20 resultados.
       const url = `https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=20`;
       
       const response = await axios.get(url);
@@ -132,8 +126,7 @@ useEffect(() => {
   };
 
   fetchPopularGames();
-}, []); // Array vazio [] garante que isso rode apenas uma vez
-  // --- FUNÇÃO DE BUSCA MANUAL ---
+}, []); 
   const handleSearch = async (event) => {
   event.preventDefault();
   if (!searchTerm) return;
@@ -146,7 +139,6 @@ useEffect(() => {
 
   try {
     const apiKey = import.meta.env.VITE_RAWG_API_KEY;
-    // URL CORRIGIDA: Usa o parâmetro `search=` com o termo que você digitou.
     const url = `https://api.rawg.io/api/games?key=${apiKey}&search=${encodeURIComponent(searchTerm)}`;
 
     const response = await axios.get(url);
