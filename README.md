@@ -1,6 +1,6 @@
 # 🎮 GameLog - Seu Catálogo Pessoal de Jogos
 
-![Capa do Projeto](https://github.com/user-attachments/assets/533d5e44-0467-4c08-8831-3fbb8622a377)
+![Capa do Projeto]([https://github.com/user-attachments/assets/533d5e44-0467-4c08-8831-3fbb8622a377](https://gamelog-fullstack-app.vercel.app/))
 
 <p align="center">
   Uma aplicação web completa para entusiastas de jogos buscarem, avaliarem e catalogarem seus títulos favoritos.
