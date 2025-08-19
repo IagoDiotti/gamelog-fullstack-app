@@ -11,11 +11,13 @@ export function LoginForm({ onLoginSuccess }) {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   const handleLogin = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await axios.post('http://localhost:3001/login', { email, password });
+      const response = await axios.post(`${API_URL}/login`, { email, password });
       login(response.data.token);
       toast.success('Login bem-sucedido!');
       if (onLoginSuccess) {

@@ -1,3 +1,4 @@
+// src/components/RegisterForm.jsx
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -6,16 +7,25 @@ export function RegisterForm({ onRegisterSuccess }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    
+    
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
     try {
-      await axios.post('http://localhost:3001/usuarios', { nome, email, password });
+      await axios.post(`${API_URL}/usuarios`, { nome, email, password });
+      
       toast.success('Cadastro realizado com sucesso! Por favor, faça o login.');
       onRegisterSuccess();
     } catch (err) {
       toast.error(err.response?.data?.error || 'Erro ao cadastrar.');
       console.error('Falha no cadastro:', err);
+    } finally {
+        setIsSubmitting(false);
     }
   };
 
@@ -34,7 +44,7 @@ export function RegisterForm({ onRegisterSuccess }) {
         <label htmlFor="register-password">Senha</label>
         <input id="register-password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
       </div>
-      <button type="submit">Cadastrar</button>
+      <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Cadastrando...' : 'Cadastrar'}</button>
     </form>
   );
 }

@@ -6,12 +6,14 @@ function ReviewList({ gameApiId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await axios.get(`http://localhost:3001/reviews/game/${gameApiId}`);
+        const response = await axios.get(`${API_URL}/reviews/game/${gameApiId}`);
         setReviews(response.data);
       } catch (err) {
         setError('Não foi possível carregar as avaliações.');

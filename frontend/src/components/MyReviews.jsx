@@ -6,13 +6,15 @@ function MyReviews({ token }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+  
   useEffect(() => {
     if (!token) return;
     const fetchMyReviews = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await axios.get('http://localhost:3001/users/me/reviews', {
+        const response = await axios.get(`${API_URL}/users/me/reviews`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

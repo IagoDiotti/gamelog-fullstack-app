@@ -9,6 +9,8 @@ function ReviewForm({ game, token, onReviewSubmitted }) {
   const [rating, setRating] = useState(5);
   const [reviewText, setReviewText] = useState('');
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const reviewData = {
@@ -19,7 +21,7 @@ function ReviewForm({ game, token, onReviewSubmitted }) {
       reviewText: reviewText,
     };
     try {
-      await axios.post('http://localhost:3001/reviews', reviewData, {
+      await axios.post(`${API_URL}/reviews`, reviewData, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       toast.success('Avaliação enviada com sucesso!');
@@ -56,7 +58,7 @@ function ReviewList({ gameApiId }) {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await axios.get(`http://localhost:3001/reviews/game/${gameApiId}`);
+        const response = await axios.get(`${API_URL}/reviews/game/${gameApiId}`);
         setReviews(response.data);
       } catch (err) {
         setError('Não foi possível carregar as avaliações.');

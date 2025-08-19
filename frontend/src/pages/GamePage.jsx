@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+
 function ReviewForm({ game, token, onReviewSubmitted }) {
   const [rating, setRating] = useState(5);
   const [reviewText, setReviewText] = useState('');
@@ -17,7 +20,7 @@ function ReviewForm({ game, token, onReviewSubmitted }) {
       rating: parseInt(rating, 10), reviewText: reviewText,
     };
     try {
-      await axios.post('http://localhost:3001/reviews', reviewData, {
+      await axios.post(`${API_URL}/reviews`, reviewData, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       toast.success('Avaliação enviada com sucesso!');
@@ -48,7 +51,7 @@ function ReviewList({ gameApiId }) {
     const fetchReviews = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:3001/reviews/game/${gameApiId}`);
+        const response = await axios.get(`${API_URL}/reviews/game/${gameApiId}`);
         setReviews(response.data);
       } catch (err) {
         console.error(err);
@@ -91,6 +94,7 @@ function GamePage() {
       setIsLoading(true);
       setError(null);
       try {
+
         const apiKey = import.meta.env.VITE_RAWG_API_KEY;
         const response = await axios.get(`https://api.rawg.io/api/games/${gameApiId}?key=${apiKey}`);
         setGame(response.data);
